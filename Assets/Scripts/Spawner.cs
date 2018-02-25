@@ -4,38 +4,25 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-	public GameObject[] enemies;
+    public GameObject[] enemies;
 	public Vector3 spawnValues;
-	public float spawnWait;
-	public float SpawnMostWait;
-	public float SpawnLeastWait;
-	public int startWait;
-	public bool stop;
+    public Vector3 spawnPosition;
+    public float spawnTime = 10f;
 
 	int randEnemy;
 
-	void Start () {
-		StartCoroutine (waitSpawner());
-	}
-	
+    void Start()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Respawn");
+        InvokeRepeating("Spawn", spawnTime, spawnTime);
+    }
+    void Spawn()
+    {
+        spawnPosition.x = Random.Range(-10, 10);
+        spawnPosition.y = 0.5f;
+        spawnPosition.z = Random.Range(-10, 10);
 
-	void Update () {
-		spawnWait = Random.Range (SpawnLeastWait, SpawnMostWait);
-	}
-
-	IEnumerator waitSpawner(){
-		yield return new WaitForSeconds(startWait);
-
-		while (!stop) {
-			randEnemy = Random.Range (0, 2);
-
-			Vector3 spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), 0, 
-				Random.Range (-spawnValues.z, spawnValues.z));
-
-			Instantiate (enemies [randEnemy], spawnPosition + transform.TransformPoint(0, 0, 0), 
-				gameObject.transform.rotation);
-
-			yield return new WaitForSeconds (spawnWait);
-		}
-	}
+        Instantiate(enemies[Random.Range(0,1)], spawnPosition, Quaternion.identity);
+        spawnTime = Random.Range(3, 15);
+    }
 }

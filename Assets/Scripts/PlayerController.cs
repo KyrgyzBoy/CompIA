@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate(){
 
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
+		float moveHorizontal = Input.GetAxis ("Fire1");
+		float moveVertical = Input.GetAxis ("Fire2");
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
@@ -37,12 +37,23 @@ public class PlayerController : MonoBehaviour {
 			count++;
 			SetCountText ();
 		}
+        
 	}
 
-	void SetCountText(){
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Respawn"))
+        { 
+            winText.text = "You Suck!";
+            rb.transform.position = new Vector3(0, -20, 0);
+        }
+    }
+
+    void SetCountText(){
 		countText.text = "Count: " + count.ToString ();
 		if (count >= 12) {
 			winText.text = "You Win!";
-		}
+            rb.transform.position = new Vector3(0, -20, 0);
+        }
 	}
 }
