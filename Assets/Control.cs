@@ -12,10 +12,14 @@ public class PlayerController : MonoBehaviour {
 	public Text countText;
 	public Text winText;
 
-	void Start(){
+    public GameObject[] pickups;
 
-		rb = GetComponent<Rigidbody> ();
-		count = 0;
+    public GameObject otherPlayer;
+
+	void Start(){
+        otherPlayer = GameObject.FindGameObjectWithTag("YellowPlayer");
+		rb = GameObject.FindGameObjectWithTag("RedPlayer").GetComponent<Rigidbody>();
+        count = 0;
 		SetCountText ();
 		winText.text = "";
 	}
@@ -26,15 +30,15 @@ public class PlayerController : MonoBehaviour {
 		float moveVertical = Input.GetAxis ("Fire2");
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
-
-		rb.AddForce (movement * speed);
-
+        pickups = GameObject.FindGameObjectsWithTag("Pick-Up");
+        rb.AddForce (movement * speed);
+        count = (12 - pickups.Length + 1);
+        SetCountText();
 	}
 
 	void OnTriggerEnter(Collider other){
 		if(other.gameObject.CompareTag("Pick-Up")){
 			other.gameObject.SetActive(false);
-			count++;
 			SetCountText ();
 		}
 
@@ -46,14 +50,16 @@ public class PlayerController : MonoBehaviour {
 		{ 
 			winText.text = "You Suck!";
 			rb.transform.position = new Vector3(0, -20, 0);
+            otherPlayer.transform.position = new Vector3(0, -20, 0);
 		}
 	}
 
 	void SetCountText(){
-		countText.text = "Count: " + count.ToString ();
+		countText.text = "Count: " + count;
 		if (count >= 12) {
 			winText.text = "You Win!";
 			rb.transform.position = new Vector3(0, -20, 0);
-		}
+            otherPlayer.transform.position = new Vector3(0, -20, 0);
+        }
 	}
 }
