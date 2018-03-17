@@ -8,6 +8,8 @@ public class CameraController : MonoBehaviour {
 
 	private Vector3 offset;
 
+	private GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
 	// Use this for initialization
 	void Start () {
 		offset = transform.position - player.transform.position;
@@ -15,6 +17,10 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-		transform.position = player.transform.position + offset;
+		Vector3 pos1 = players [0].transform.position;
+		Vector3 pos2 = players [1].transform.position;
+
+
+		transform.position = (pos1+pos2)/2 + offset;
 	}
 }

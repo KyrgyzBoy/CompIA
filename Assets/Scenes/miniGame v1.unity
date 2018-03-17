@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657993, g: 0.49641424, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657934, g: 0.4964134, b: 0.5748173, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -88,7 +88,6 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -141,7 +140,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 68313958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f059e0a3e437484f81e523787abacf6, type: 3}
+  m_Script: {fileID: 11500000, guid: f0bf85566b3a34a28b8a76f0085258f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10

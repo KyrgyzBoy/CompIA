@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class Control : MonoBehaviour {
 
 	private Rigidbody rb;
 	private int count;
@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate(){
 
-		float moveHorizontal = Input.GetAxis ("Fire1");
-		float moveVertical = Input.GetAxis ("Fire2");
+		float moveHorizontal = Input.GetAxis ("Horizontal");
+		float moveVertical = Input.GetAxis ("Vertical");
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
